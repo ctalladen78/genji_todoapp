@@ -1,5 +1,5 @@
 
-## Genji/Badger db golang example todoapp
+## Genji/Boltdb db golang example todoapp
 
 storm db has all the capabilities of boltdb with the added query functionality 
 

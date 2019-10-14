@@ -1,7 +1,7 @@
 package main
 
 import (
-	"golang-projects/stormdb_todoapp/db"
+	"golang-projects/genji_todoapp/db"
 	"log"
 	"os"
 	"path/filepath"
@@ -28,12 +28,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	taskStorePath := filepath.Join(dir, "/task.db")
-	userStorePath := filepath.Join(dir, "/user.db")
-	log.Println(taskStorePath)
-	log.Println(userStorePath)
+	taskStorePath := filepath.Join(dir, "/genji.db")
+	log.Println("DB Used ",taskStorePath)
 
-	userDb, err := store.NewDB(userStorePath)
 	taskDb, err := store.NewDB(taskStorePath)
 	if err != nil {
 		log.Fatal("DB NEW error ", err)

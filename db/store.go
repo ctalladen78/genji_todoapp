@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/asdine/genji"
+	"github.com/asdine/genji/engine/bolt"
 	"github.com/lithammer/shortuuid"
 )
 
@@ -34,10 +35,19 @@ type Task struct {
 }
 
 func NewDB(path string) (*Store, error) {
-	d, err := storm.Open(path, storm.Codec(json.Codec))
-	if err != nil {
-		return nil, err
-	}
+	// d, err := storm.Open(path, storm.Codec(json.Codec))
+	// if err != nil {
+	// 	return nil, err
+	// }
+	// Create a bolt engine
+    ng, err := bolt.NewEngine("genji.db", 0600, nil)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    // Pass it to genji
+    db := genji.New(ng)
+    defer db.Close()
 
 	return &Store{Db: d}, nil
 }
